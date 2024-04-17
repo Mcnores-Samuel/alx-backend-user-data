@@ -9,7 +9,6 @@ from typing import List, TypeVar
 class Auth:
     """Auth class to manage the API authentication
     """
-
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """Require authentication
         Args:
@@ -26,14 +25,13 @@ class Auth:
         if path in excluded_paths:
             return False
         return True
-    
+
     def authorization_header(self, request=None) -> str:
         """Returns request object or None"""
         if request:
             return request.header.get('Authorization', None)
         return None
-    
+
     def current_user(self, request=None) -> TypeVar('User'):
         """Returns None"""
         return None
-    

@@ -40,14 +40,14 @@ def forbidden_handler(error) -> str:
 
 
 @app.before_request
-def before_request():
+def before_request() -> str:
     excluded_path = [
         '/api/v1/status/',
         '/api/v1/unauthorized/',
         '/api/v1/forbidden/']
     if not auth:
         return
-    if not auth.require_path(request.path, excluded_path):
+    if not auth.require_auth(request.path, excluded_path):
         return
     if auth.authorization_header(request) is None:
         abort(401)

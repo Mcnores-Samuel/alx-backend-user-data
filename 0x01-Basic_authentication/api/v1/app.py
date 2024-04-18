@@ -41,6 +41,7 @@ def forbidden_handler(error) -> str:
 
 @app.before_request
 def before_request() -> str:
+    """Registers a function to run before each request."""
     excluded_path = [
         '/api/v1/status/',
         '/api/v1/unauthorized/',

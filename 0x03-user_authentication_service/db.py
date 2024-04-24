@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """DB module presenting essertial database operations
 """
 from sqlalchemy import create_engine

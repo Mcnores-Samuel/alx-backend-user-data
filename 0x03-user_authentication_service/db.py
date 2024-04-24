@@ -30,8 +30,7 @@ class DB:
             self.__session = DBSession()
         return self.__session
 
-    @property
-    def add_user(email: str, hashed_password: str) -> User:
+    def add_user(self, email: str, hashed_password: str) -> User:
         """Creates a new user object and returns the user objects"""
         user = User(email=email, hashed_password=hashed_password)
         self.__session.add(user)

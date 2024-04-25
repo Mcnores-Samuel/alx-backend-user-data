@@ -7,7 +7,6 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import InvalidRequestError
-
 from user import Base, User
 
 
@@ -33,7 +32,8 @@ class DB:
         return self.__session
 
     def add_user(self, email: str, hashed_password: str) -> User:
-        """Creates a new user object and returns the user objects"""
+        """Creates a new user object and returns the user objects
+        """
         user = User(email=email, hashed_password=hashed_password)
         self._session.add(user)
         self._session.commit()
@@ -49,7 +49,7 @@ class DB:
         form key in kwargs.keys():
             if key not in schema:
                 raise InvalidRequestError
-        query = self._session(User).filter(**kwargs).first()
+        query = self._session(User).filter_by(**kwargs).first()
         if query is None:
             raise NoResultFound
         return query
